@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>勻速運動</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+
+        button {
+            width: 80px;
+            height:40px;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color:pink;
+            position:absolute;
+            top:50px;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <button id="btn">動畫</button>
+    <div id="box"></div>
+    <script type="text/javascript">
+    // 簡單動畫存在問題：1.處理邊界 2.定時器管理
+
+    //1.獲取事件源
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+    var timer = null;
+    //2. 給按鈕綁定事件    
+    btn.onclick = function(){
+        //先關閉定時器 再開啟定時器 防止定時器累加 導致物體加快
+        
+        //3.移動起來(定時器)
+        timer = setInterval(function(){
+            if(box.offsetLeft === 500){
+                clearInterval(timer); //當移動500px就停止
+            }else{
+                box.style.left = box.offsetLeft + 10 + 'px';
+            }
+
+        },30);//設定30毫秒
+
+    }
+        
+    </script>
+</body>
+</html>
